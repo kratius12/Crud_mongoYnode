@@ -77,7 +77,7 @@ db.createCollection('Compras',{
     }
 })
 
-db.createCollection('Proveedores',{
+db.createCollection('clientes',{
     validator: {
         $jsonSchema: {
             bsonType: "object",
@@ -109,24 +109,6 @@ db.createCollection('Proveedores',{
                     description: "la contraseña es requerida para poder iniciar sesion"
                 },
                 telefono: {
-                    bsonType: "string",
-                    minimum: 10,
-                    maximum: 15,
-                    description: "la contraseña es requerida para poder iniciar sesion"
-                },
-                nombre_contacto: {
-                    bsonType: "string",
-                    minimum: 10,
-                    maximum: 15,
-                    description: "la contraseña es requerida para poder iniciar sesion"
-                },
-                telefono_contacto: {
-                    bsonType: "string",
-                    minimum: 10,
-                    maximum: 15,
-                    description: "la contraseña es requerida para poder iniciar sesion"
-                },
-                email_contacto: {
                     bsonType: "string",
                     minimum: 10,
                     maximum: 15,
