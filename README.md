@@ -11,7 +11,9 @@ Para poder acceder al npm que es sistema de gestión de paquetes necesitamos rea
 
 --------
 primer paso:
-abrir la terminal del editor de codigo y digitar el siguiente comando: npm init y luego darle enter hasta que se termine de ejecutar este comando.
+abrir la terminal del editor de codigo y digitar el siguiente comando: 
+npm init
+y luego darle enter hasta que se termine de ejecutar este comando.
 
 segundo paso: 
 ejecutar el comando npm install, esto traerá consigo ciertas librerias de node que permitirá que el codigo se ejecute de manera correcta.
@@ -21,7 +23,8 @@ Para ejecutar los comandos de mongo desde el archivo .js es necesario precisamen
 
 --------
 primer paso.
-abrir la consola y ejecutar el comando npm install mongodb
+abrir la consola y ejecutar el comando 
+npm install mongodb
 
 segundo paso.
 instalar directamente el faker que es la herramienta que nos ayuda a llenar los documentos con campos ficticios para realizar pruebas en la base de datos; para esto es necesario ejecutar el siguiente comando:
