@@ -1,0 +1,77 @@
+use('construtech')
+
+//insertar un documento en la colección de materiales.
+db.materiales.insertOne({
+    nombre:"Cemento",
+    estado:"activo",
+    precio:"3000.00",
+    cantidad:"10.0",
+});
+//insertar varios documentos en la colección de empleados.
+db.empleados.insertMany([
+    {nombres:"Ronald Ortiz",
+    direccion:"call 55f 6b 81",
+    estado:"activo",
+    email:"ortizronald623@gmail.com",
+    telefono:"3158119393"
+    },{
+        nombres:"Cesar Ortiz",
+        direccion:"call 77e 5c 89",
+        estado:"inactivo",
+        email:"cesar34@hotmail.com",
+        telefono:"3225771077"
+    }
+]
+    )
+
+//insertar varios datos en la colección de proveedores.
+db.proveedores.insertMany([
+    {   
+        nombre:"deposito donde benito",
+        direccion:"call 55f 6b 81",
+        estado:"activo",
+        email:"dondebenito123@gmail.com",
+        nit:"321587459-2",
+        telefono:"3146859858"
+    },{
+        nombre:"homecenter",
+        direccion:"call 77# 6b",
+        estado:"activo",
+        email:"homecenter@homecenter.com",
+        nit:"985421452-7",
+        telefono:"3148744451"
+    },{
+    nombre:"Pintuco",
+    direccion:"cll 77b#5f 98",
+    estado:"inactivo",
+    email:"pintapintuco@gmail.com",
+    nit:"985654125-2",
+    telefono:"3265874141"
+    }
+]);
+
+//------ACTUALIZACIÓN DE DOCUMENTOS---------
+//actualización a un solo documento de la colección proveedores sin usar 'upsert'
+db.proveedores.updateOne(
+    {_id:ObjectId("647d4d5f6cf43249360c0f38")},{
+        $set: {email:"Jonathon@gmail.com"}
+    }
+)
+//se actualizan todos los documentos que sean de tipo "persona natural" sin usar 'upsert'
+db.proveedores.updateMany(
+    {tipo:"persona natural"},{
+        $set: {tipo:"persona juridica"}
+    }
+)
+
+//Se actualiza un documento de la colección de materiales usando 'upsert'
+db.materiales.updateOne(
+    {_id:ObjectId('647d0b060406d8b091a656f8')},
+   {$set: {prov:"homecenter"}},
+    {upsert:true}
+)
+//Se actualizan todos los documentos de la colección de materiales usando 'upsert'
+db.materiales.updateMany({},
+    {$set:{prov:"deposito"}},
+    {upsert:true}
+)

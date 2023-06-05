@@ -1,0 +1,136 @@
+//crear la base de datos 'constru-tech'
+use('construtech');
+db.createCollection("materiales",{
+    validator:{
+        $jsonSchema:{
+            bsonType:"object",
+            title:"Validación de material",
+            required:["nombre","estado","precio","cantidad"],
+            properties:{
+                nombre:{
+                    bsonType:"string",
+                    description:"El nombre del material es obligatorio y tiene que contener almenos 3 caracteres alfanumericos"
+                },
+                estado:{
+                    enum:["activo","inactivo"],
+                    description:"El estado debe de ser obligatoriamente 'activo' o 'inactivo'"
+                },
+                precio:{
+                    bsonType:"double",
+                    description:"El precio es obligatorio y debe de ser numerico"
+                },
+                cantidad:{
+                    bsonType:"double",
+                    description:"La cantidad es obligatoria y debe de ser en numero enteros."
+                }
+            }
+        }
+    }
+}
+
+)
+
+
+//Crear la colección de empleados
+db.createCollection("empleados",{
+    validator:{
+        $jsonSchema:{
+            bsonType:"object",
+            title:"Validaciónde empleado",
+            required:["nombres","direccion","estado","email","telefono"],
+            properties:{
+                nombres:{
+                    bsonType:"string",
+                    description:"El nombres no debe de contener caracteres numericos (contiene el apellido), es obligatorio y debe tener entre 3 y 20 caracteres"
+                },
+                direccion:{
+                    bsonType:"string",
+                    description:"La dirección debe ser una cadena de caracteres alfanumericos y debe contener al menos 8 caracteres"
+                },
+                estado:{
+                    enum:["activo","inactivo"],
+                    description:"El estado debe ser obligatoriamente 'activo' o 'inactivo'"
+                },
+                email:{
+                    bsonType:"string",
+                    description:"El email es un campo obligatorio y debe contener caracteres especiales y almenos 5 caracteres alfanumericos"
+                },
+                telefono:{
+                    bsonType:"string",
+                    description:"El telefono requiere 10 caracteres numericos y es obligatorio"
+                }
+            }
+        }
+    }
+}
+
+),
+
+//crear la colección de proveedores
+db.createCollection("proveedores",{
+    validator:{
+        $jsonSchema:{
+            bsonType:"object",
+            title:"Validación de proveedor",
+            required:["nombre","direccion","nit","estado","email","telefono"],
+            properties:{
+                nombres:{
+                    bsonType:"string",
+                    description:"El nombres no debe de contener caracteres numericos (contiene el apellido), es obligatorio y debe tener entre 3 y 20 caracteres"
+                },
+                direccion:{
+                    bsonType:"string",
+                    description:"La dirección debe ser una cadena de caracteres alfanumericos y debe contener al menos 8 caracteres"
+                },
+                tipo:{
+                    enum:["persona juridica","persona natural"]
+                },
+                estado:{
+                    enum:["activo","inactivo"],
+                    description:"El estado debe ser obligatoriamente 'activo' o 'inactivo'"
+                },
+                email:{
+                    bsonType:"string",
+                    description:"El email es un campo obligatorio y debe contener caracteres especiales y almenos 5 caracteres alfanumericos"
+                },
+                telefono:{
+                    bsonType:"string",
+                    description:"El telefono requiere 10 caracteres numericos y es obligatorio"
+                }
+        }
+    }
+
+}
+}
+)
+
+//Crear la colección de materiales
+db.createCollection("materiales",{
+    validator:{
+        $jsonSchema:{
+            bsonType:"object",
+            title:"Validación de material",
+            required:["nombre","estado","precio","cantidad"],
+            properties:{
+                nombre:{
+                    bsonType:"string",
+                    description:"El nombre del material es obligatorio y tiene que contener almenos 3 caracteres alfanumericos"
+                },
+                estado:{
+                    enum:["activo","inactivo"],
+                    description:"El estado debe de ser obligatoriamente 'activo' o 'inactivo'"
+                },
+                precio:{
+                    bsonType:"double",
+                    description:"El precio es obligatorio y debe de ser numerico"
+                },
+                cantidad:{
+                    bsonType:"double",
+                    description:"La cantidad es obligatoria y debe de ser en numero enteros."
+                }
+            }
+        }
+    }
+}
+
+)
