@@ -1,6 +1,8 @@
 //crear la base de datos 'constru-tech'
 use('construtech');
+//se crea la colección de materiales
 db.createCollection("materiales",{
+    //se usa el validator para realizar el quema y de esta manera evitar que se ingresen datos erroneos.
     validator:{
         $jsonSchema:{
             bsonType:"object",
@@ -33,6 +35,7 @@ db.createCollection("materiales",{
 
 //Crear la colección de empleados
 db.createCollection("empleados",{
+//se usa el validator para realizar el quema y de esta manera evitar que se ingresen datos erroneos.
     validator:{
         $jsonSchema:{
             bsonType:"object",
@@ -68,6 +71,7 @@ db.createCollection("empleados",{
 
 //crear la colección de proveedores
 db.createCollection("proveedores",{
+//se usa el validator para realizar el quema y de esta manera evitar que se ingresen datos erroneos.
     validator:{
         $jsonSchema:{
             bsonType:"object",
