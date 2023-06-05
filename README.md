@@ -40,3 +40,13 @@ Luego se puede pasar a ejecutar el archivo de index.js, en este se encuentra la 
 
 por ultimo se pueden ejecutar el resto de archivos que se encuentran en la carpeta de comandos mongo, ahí están los comandos basicos para realizar consultas en mongo y con esto mostrar la información ingresada por el faker en este caso.
 
+Luego de realizar la insatalación hay que tener en cuenta el orde de ejecución de los arvhivos para poder ejecutar de mejor manera el proyecto en general.
+
+Archivo #1:
+Ejecutar el arvhico que se encuentra en la carpeta "comandos mongo" llamado creación.mongodb, en este arvhivo estám las 3 colecchiones que se necesitan para correr bien este proyecto.
+
+Archivo #2:
+Ejecutar el archivo llamado indes.js, al ejecutar este se llenaran las colecciones con 2000 documentos de prueba con los cuales despues se podrán hacer las consultas.
+
+Archivo #3:
+Ejecutar el resto de archivos que se encuentran en la carpeta "comandos mongo", estos archivos fueron hechos sobre todo para pruebas, por lo cual no tienen un orden establecido de ejecución entre ellos.
