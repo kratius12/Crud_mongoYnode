@@ -38,9 +38,11 @@ El primer archivo que se deberia de ejecutar es el que se encuentra en la carpet
 
 Luego se puede pasar a ejecutar el archivo de index.js, en este se encuentra la ejecución las funciones usando la herramienta faker para llenar los docuemntos requeridos para realizar las pruebas de la base de datos.
 
+Después hay que realizar la conexión con la base de datos para ejecutar el "Archivo #3", para esto es necesario tener instalada la extensión de mongodb en VSC y crear una nuevo conexión con el cluster en el cual se desee realizar las operaciones.
+
 por ultimo se pueden ejecutar el resto de archivos que se encuentran en la carpeta de comandos mongo, ahí están los comandos basicos para realizar consultas en mongo y con esto mostrar la información ingresada por el faker en este caso.
 
-Luego de realizar la insatalación hay que tener en cuenta el orde de ejecución de los arvhivos para poder ejecutar de mejor manera el proyecto en general.
+Luego de realizar la insatalación hay que tener en cuenta el orden de ejecución de los arvhivos para poder ejecutar de mejor manera el proyecto en general.
 
 Archivo #1:
 Ejecutar el arvhico que se encuentra en la carpeta "comandos mongo" llamado creación.mongodb, en este arvhivo estám las 3 colecchiones que se necesitan para correr bien este proyecto.
