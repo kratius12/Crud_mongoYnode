@@ -55,12 +55,12 @@ use('construtech')
 // },{
 //     $count:'materiales_inactivos'
 // }
-// ])
-//--------------------------ELIMINACIÓN-------------------------------
+// ])
 // //ejemplo unwind
 // db.materiales.aggregate([{
 //     $unwind: "$cantidad"
 // }])
+//--------------------------ELIMINACIÓN-------------------------------
 // //eliminar un solo documento de la colección de proveedores
 // db.proveedores.deleteOne(
 //     {
