@@ -1,5 +1,5 @@
 //se importa la libreria de mongodb
-const { MongoClient } = require('mongodb');
+const { MongoClient, ObjectId } = require('mongodb');
 //se ingresan las credenciales para la conección a la base de datos
 const uri = 'mongodb+srv://admin:admin@cluster0.ya4kxql.mongodb.net/?retryWrites=true&w=majority'
 //se crea un función para ingresar los docuementos en la colección de materiales, donde la información de los materiales es el parametro
@@ -51,19 +51,18 @@ async function crearMaterial(nuevoMat){
 
 
 //Se crea la función para buscar un material teniendo como parametro el nombre del material
-async function mostrarMaterial(nomMat){
+async function mostrarMaterial(nombre){
     //se instacia la conexión a la base de datos
     const client = new MongoClient(uri);
-
     try{
         //se realiza la conexión para garantizar que se esté conectado antes de realizar la operación
         await client.connect();
         //se realiza el query que se necesita para realizar la busqueda del material teniendo como filtro el nombre del mismo
-        const result = await client.db('constru-tech').collection('materiales').findOne({name:nomMat});
+        const result = await client.db('constru-tech').collection('materiales').findOne({nombre:nombre},{});
         //se crea una condición para cuando el query se ejecute correctamente y traiga la información del material requerido
         if(result){
             //se imprime en consola que efectivamente se ha encontrado el material requerido
-            console.log(`se econtró un material con el nombre: ${nomMat}`);
+            console.log(`se econtró un material`);
             //se muestra toda la información del material
             console.log(result);
         }else{
@@ -79,6 +78,24 @@ async function mostrarMaterial(nomMat){
         await client.close();
     }
 }
+async function mostrarMateriales(){
+    const client = new MongoClient(uri)
+    try{
+        await client.connect();
+        const result = await client.db('construtech').collection('materiales').find({},{nombre:1,estado:1});
+        if(result){
+            console.log("se encontraron los siguientes materiales: ");
+            console.log(result);
+        }else{
+            console.log("No se encontraron materiales");
+        }
+        }catch(error){
+            console.log(error);
+        }finally{
+            await client.close();
+        }
+    }
+
 //se crea la función de actualizar material pidiendo 2 parametros, el primero es el id del material y el segundo es el nombre por el cual se desea cambiar
 async function actualizarMaterial(id,nomMat){
     //se instancia la conexión a la base de datos
@@ -189,8 +206,6 @@ async function eliminarMateriales(nomMat){
     }
 }
 
-
-
 //se crea la funcion para registrar nuevo empleados
 async function crearEmpleados(nuevoEmp){
     //se instancia la conexión con la base de datos
@@ -240,6 +255,69 @@ async function crearEmpleado(nuevoEmp){
         await client.close();
     }
 }
+//se crea la función de mostrar empleado con el parametro id para filtrar los empleados
+async function mostrarEmpleado(id){
+    //se instancia la conexión con la base de datos 
+    const client = new MongoClient(uri);
+    // se genera un try-catch-finally para realizar la operación de busqueda de un mepleado
+    try{
+        //se genera la conexión para ganartizar que se ejecute la operación
+        await client.connect()
+        // se genera el query para la operación requerida
+        const result = await client.db('construtech').collection('empleados').findOne({_id: id});
+        //se genera una condición para mostrar el resultado de la operación 
+        if(result){
+            //se imprime por consola el resultado de la operación
+            console.log(`se ha encontraod un empleado con el id. ${id}`)
+            //se muestra la información que contiene el docuemnto del empleado con el id ingresado
+            console.log(result)
+        }//en caso tal de que no se encuentre el empleado se imprime por consola el mesaje que contiene el else
+        else{
+            //se imprime el mensaje
+            console.log(`no s eha encontrado n ingun empleado con el id ingresado`)
+        }
+    }
+    //se genera un catch en caso tal de que falle la conexión con la base de datos
+    catch(error){
+        // se imprime el mensaje de error
+        console.log(error)
+    }finally{
+        //se cierra la conexión con la base de datos para asegurar la integridad de la base de datos
+        await client.close()
+    }
+    
+}
+//se crea la función de mostrar empleados para mostrar todos los registros de la colección empleados
+async function mostrarEmpleados(){
+    //se instancia la conexión a la base de datos
+    const client = new MongoClient(uri);
+    // se crea un try-catch-finally para crear la operación requerida para la función
+    try{
+        //se abre la conexión con la base de datos
+        await client.connect()
+        //se genera el query para la operación requerida
+        const result = await client.db('construtech').collection('empleados').find({},{});
+        //Se genera la condición para mostrar el resultado de la operación realizada
+        if(result){
+            //se miestra el mensaje y la información de los empleados que se encuentran en la colección.
+            console.log(`se encontraron los siguientes empleados:`);
+            console.log(result)
+        }
+        //Se genera un else en caso tal de que no se haya realizado correctamente la operación.
+        else{
+            //se muestra el mensaje de que no se han podido encontrar los empleados.
+            console.log(`no se han encontrado empleados`)
+        }
+    //se crea un catch en caso tal de que falle la conexión con al base de datos.
+    }catch(error){
+        //se imprime el mensaje de error
+        console.log(error)
+    }finally{
+        //se cierra la conexión para manterner la integridad de la base de datos.
+        await client.close()
+    }
+}
+
 //Se crea la función para actualizar empleados, pasando como paramentros el estado al cual se desea cambiar y el estado anterior
 async function actualizarEmpleados(estado,estadoAnt){
     //se instancia la conexión a la base de datos
@@ -530,23 +608,32 @@ async function eliminarProveedores(){
 
 //se exportan la funciones para poder usarlas en otro archivo
 module.exports = {
+    //se exporta las funciones para mostrar los documentos de las 3 colecciones
     mostrarMaterial,
-    actualizarMateriales,
-    eliminarMaterial,
-    eliminarMateriales,
+    mostrarMateriales,
+    mostrarEmpleado,
+    mostrarEmpleados,
+    //se exportan las funciones para agregar nuevos documentos de las 3 colecciones
     crearMateriales,
     crearMaterial,
     crearEmpleados,
     crearEmpleado,
-    eliminarEmpleado,
-    eliminarEmpleados,
-    actualizarEmpleado,
-    actualizarEmpleados,
     crearProveedores,
     crearProveedor,
+    
+    //se exportan las funciones para actualizar los documentos de las 3 colecciones
+    actualizarMateriales,
+    actualizarEmpleado,
+    actualizarEmpleados,
     actualizarProveedores,
     actualizarProveedor,
+    actualizarMaterial,
+
+    //se exportan las funciones para eliminar los documentos de las 3 colecciones
+    eliminarMaterial,
+    eliminarMateriales,
+    eliminarEmpleado,
+    eliminarEmpleados,
     eliminarProveedor,
     eliminarProveedores
-}
-
+} 
