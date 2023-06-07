@@ -1,0 +1,77 @@
+use('construtech')
+
+//se realizan los lookup
+// db.materiales.aggregate([
+//     {
+//         $lookup: {
+//           from: "proveedores",
+//           localField: "nombre",
+//           foreignField: "_id",
+//           as: "provXmat",
+//         },
+//     },
+//     {
+//         $limit: 1
+//     }
+// ]);
+
+// db.empleados.aggregate([
+//     {
+//         $lookup: {
+//           from: "proveedores",
+//           localField: "nombres",
+//           foreignField: "_id",
+//           as: "prov"
+//         },
+// },{
+//     $limit :12
+// }
+// ]).sort({nombres:1})
+//Se realizan los pipelines
+// db.materiales.aggregate([
+//     {
+//     $match:{estado:"activo"}
+//     },
+
+//     {
+//     $group: {
+//       _id: "$nombre",
+//       total: {
+//         $sum: 1
+//       }
+//     }
+//     },{
+//         $sort:{nombre:1}
+//     }
+
+// ])
+
+// db.materiales.aggregate([
+//     {
+//     $match:{estado:"inactivo"}
+// },
+// {
+//     $skip:2
+// },{
+//     $count:'materiales_inactivos'
+// }
+// ])
+//--------------------------ELIMINACIÓN-------------------------------
+// //ejemplo unwind
+// db.materiales.aggregate([{
+//     $unwind: "$cantidad"
+// }])
+// //eliminar un solo documento de la colección de proveedores
+// db.proveedores.deleteOne(
+//     {
+//         "_id":ObjectId("64793c55283763ae3e7f04b1")
+//     }
+// )
+// //eliminar todos los documentos de la colección empleados
+// db.empleados.deleteMany({})
+
+// //eliminar  la colección materiales
+// db.materiales.drop()
+
+// //eliminar base de datos
+// db.dropDatabase() 
